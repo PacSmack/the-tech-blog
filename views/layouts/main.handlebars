@@ -6,33 +6,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Tech Blog</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 
 <body>
     <div class="wrapper">
         <header>
-            <h1>
-                <a href="/">The Tech Blog</a>
-            </h1>            
-            <nav>                
+            {{!-- <nav>
                 {{#if loggedIn}}
                 <a href="/dashboard">dashboard</a>
                 <button id="logout" class="btn-no-style">logout</button>
                 {{else}}
-                <a href='/login'>login</a>
-                {{/if}}
-            </nav>
+                <a class="button is-info" id="signup-modal">
+                    <strong>Sign up</strong>
+                </a>
+                <a class="button is-light login-btn" id="login-modal-btn">
+                    Log in
+                </a>
+                {{/if}} --}}
+
+                <nav class="navbar is-transparent max-height:8.75rem;" role="navigation" aria-label="main navigation">
+                    <div class="navbar-brand">
+                        <a class="navbar-item " href="/">
+                            <figure class="is-fullwidth">
+                                <img
+                                    src="https://res-console.cloudinary.com/pacsmack/thumbnails/transform/v1/image/upload//v1625181011/bG9nb190cmFuc3BhcmVudF9xZ2tlaWo=/drilldown">
+                            </figure>
+                        </a>
+
+                        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                            data-target="navbarBasicExample">
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </a>
+                    </div>
+
+                    <div id="navbarBasicExample" class="navbar-menu">
+                        <div class="navbar-end">
+                            <div class="navbar-item" id="single-page-btn">
+
+                                <div class="buttons">
+                                    {{#if loggedIn}}
+                                    <button id="logout" class="button is-danger">Logout</button>
+                                    {{else}}
+                                    <a class="button is-info" id="signup-modal">
+                                        <strong>Sign up</strong>
+                                    </a>
+                                    <a class="button is-light login-btn" id="login-modal-btn">
+                                        Log in
+                                    </a>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                {{!--
+            </nav> --}}
         </header>
         <main>
             {{{ body }}}
         </main>
-        <footer>
+        <footer class="has-text-centered">
             Keep on Coding!
         </footer>
     </div>
 
+    {{{ body }}}
+
+    <!-- signup modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-background" id="signupBg"></div>
+        <div class="modal-content has-background-white py-5 px-5">
+            <h3 class="has-text-centered title mb-6" id="modal-text">Join Our Culture!</h3>
+
+            <form id="signup-form">
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <input class="input" id="email-signup-input" type="email" placeholder="Email">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input class="input" id="username-signup-input" type="text" placeholder="Username">
+                        <span class="icon is-small is-left">
+                            <i class="far fa-user"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input class="input" id="password-signup-input" type="password" placeholder="Password">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="centered-btn column has-text-centered is-2">
+                    <button class="button is-primary is-centered" type="submit" id="signup-btn">Signup!</button>
+                </div>
+        </div>
+        </form>
+    </div>
+
+    {{!-- login modal --}}
+    <div class="modal" id="login-modal">
+        <div class="modal-background" id="login-modal-bg"></div>
+        <div class="modal-content has-background-white py-5 px-5">
+            <h3 class="has-text-centered title mb-6" id="modal-text">Welcome Back!</h3>
+
+            <form class="login-form" id="login-form">
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <input class="input" id="email-login-input" type="email" placeholder="Email">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input class="input" id="password-login-input" type="password" placeholder="Password">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="centered-btn column has-text-centered is-2">
+                    <button class="button is-primary is-centered" type="submit" id="login-btn">Login!</button>
+                </div>
+        </div>
+        </form>
+    </div>
+
+
     {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
+    {{else}}
+    <script src="/javascript/login-modal.js"></script>
+    <script src="/javascript/signup-modal.js"></script>
     {{/if}}
 </body>
 

@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     Post.findAll({
         order: [['created_at', 'DESC']],
         attributes: [
-            'id', 'post_url', 'title', 'created_at'
+            'id', 'content', 'title', "user_id", 'created_at'
         ],
         include: [
             {
@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
             id: req.params.id
         },
         attributes: [
-            'id', 'post_url', 'title', 'created_at'
+            'id', 'content', 'title', "user_id", 'created_at'
         ],
         include: [
             {
@@ -70,9 +70,10 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', withAuth, (req, res) => {
+    console.log(req.session)
     Post.create({
         title: req.body.title,
-        post_url: req.body.post_url,
+        content: req.body.content,
         user_id: req.session.user_id
     })
         .then(dbPostData => res.json(dbPostData))
