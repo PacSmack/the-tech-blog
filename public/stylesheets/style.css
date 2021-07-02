@@ -17,6 +17,10 @@ a {
     transition: color .1s;
 }
 
+.pell-content {
+    background-color: pink;
+}
+
 a:hover {
     color: #3486eb;
 }

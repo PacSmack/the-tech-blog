@@ -7,24 +7,13 @@
     <title>The Tech Blog</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+
 </head>
 
 <body>
     <div class="wrapper">
-        <header>
-            {{!-- <nav>
-                {{#if loggedIn}}
-                <a href="/dashboard">dashboard</a>
-                <button id="logout" class="btn-no-style">logout</button>
-                {{else}}
-                <a class="button is-info" id="signup-modal">
-                    <strong>Sign up</strong>
-                </a>
-                <a class="button is-light login-btn" id="login-modal-btn">
-                    Log in
-                </a>
-                {{/if}} --}}
-
+        <header>   
                 <nav class="navbar is-transparent max-height:8.75rem;" role="navigation" aria-label="main navigation">
                     <div class="navbar-brand">
                         <a class="navbar-item " href="/">
@@ -33,13 +22,7 @@
                                     src="https://res-console.cloudinary.com/pacsmack/thumbnails/transform/v1/image/upload//v1625181011/bG9nb190cmFuc3BhcmVudF9xZ2tlaWo=/drilldown">
                             </figure>
                         </a>
-
-                        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-                            data-target="navbarBasicExample">
-                            <span aria-hidden="true"></span>
-                            <span aria-hidden="true"></span>
-                            <span aria-hidden="true"></span>
-                        </a>
+                        
                     </div>
 
                     <div id="navbarBasicExample" class="navbar-menu">
@@ -49,6 +32,7 @@
                                 <div class="buttons">
                                     {{#if loggedIn}}
                                     <button id="logout" class="button is-danger">Logout</button>
+                                    <a href="/dashboard" id="dashboard" class="button is-info">Dashboard</a>
                                     {{else}}
                                     <a class="button is-info" id="signup-modal">
                                         <strong>Sign up</strong>
@@ -73,7 +57,7 @@
         </footer>
     </div>
 
-    {{{ body }}}
+    
 
     <!-- signup modal -->
     <div class="modal" id="signupModal">
