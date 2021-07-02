@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const seedAll = require("./seeds")
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
@@ -18,7 +19,7 @@ const sess = {
     saveUnitialized: true,
     store: new SequelizeStore({
         db: sequelize
-    })    
+    })
 };
 
 
@@ -40,5 +41,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes)
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'));
+    seedAll().then(() => {
+        app.listen(PORT, () => {
+            console.log('Now listening')
+        });
+    });
 });
